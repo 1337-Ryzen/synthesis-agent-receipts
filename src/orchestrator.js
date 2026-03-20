@@ -28,9 +28,26 @@ async function fetchRepoStats() {
   }
 }
 
+async function fetchFearGreed() {
+  try {
+    const r = await fetch('https://api.alternative.me/fng/?limit=1');
+    const j = await r.json();
+    const row = j?.data?.[0] || {};
+    return {
+      ok: true,
+      source: 'alternative.me',
+      value: Number(row.value || 0),
+      classification: row.value_classification || 'Unknown'
+    };
+  } catch (e) {
+    return { ok: false, source: 'alternative.me', error: String(e.message || e) };
+  }
+}
+
 async function executeStep(step) {
   if (step.type === 'query_market_data') return fetchEthPriceUsd();
   if (step.type === 'query_repo_health') return fetchRepoStats();
+  if (step.type === 'query_sentiment_index') return fetchFearGreed();
   if (step.type === 'evaluate_risk_score') return { ok: true, source: 'risk-engine', score: 0.12, verdict: 'low-risk' };
   return { ok: true, source: 'internal', detail: `Executed ${step.type}` };
 }
@@ -43,6 +60,7 @@ export async function runAutonomousTask({ goal, chain, proposedPlan }) {
     { type: 'analyze_goal', amountUsd: 0 },
     { type: 'query_market_data', amountUsd: 0 },
     { type: 'query_repo_health', amountUsd: 0 },
+    { type: 'query_sentiment_index', amountUsd: 0 },
     { type: 'evaluate_risk_score', amountUsd: 0 },
     { type: 'generate_result', amountUsd: 0 }
   ];

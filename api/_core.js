@@ -49,6 +49,22 @@ async function fetchEthPriceUsd() {
   }
 }
 
+async function fetchFearGreed() {
+  try {
+    const r = await fetch('https://api.alternative.me/fng/?limit=1');
+    const j = await r.json();
+    const row = j?.data?.[0] || {};
+    return {
+      ok: true,
+      source: 'alternative.me',
+      value: Number(row.value || 0),
+      classification: row.value_classification || 'Unknown'
+    };
+  } catch (e) {
+    return { ok: false, source: 'alternative.me', error: String(e.message || e) };
+  }
+}
+
 async function fetchRepoStats() {
   try {
     const r = await fetch('https://api.github.com/repos/1337-Ryzen/synthesis-agent-receipts', {
@@ -92,6 +108,7 @@ export async function run(goal, plan) {
     let toolResult = { ok: true, source: 'internal', detail: `Executed ${step.type}` };
     if (step.type === 'query_market_data') toolResult = await fetchEthPriceUsd();
     if (step.type === 'query_repo_health') toolResult = await fetchRepoStats();
+    if (step.type === 'query_sentiment_index') toolResult = await fetchFearGreed();
     if (step.type === 'evaluate_risk_score') toolResult = { ok: true, source: 'risk-engine', score: 0.12, verdict: 'low-risk' };
     const out = { step: step.type, status: 'ok', toolResult };
     outputs.push(out);

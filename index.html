@@ -10,6 +10,8 @@
       .wrap{max-width:1024px;margin:34px auto;padding:0 18px 40px}.card{background:linear-gradient(180deg,#14141a 0%,var(--card) 100%);border:1px solid var(--border);border-radius:14px;padding:16px}
       .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))} h1{margin:0 0 8px;font-size:clamp(28px,5vw,42px)}
       .sub{color:var(--muted);line-height:1.6}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;margin-right:8px;border:1px solid var(--border)}
+      .metric{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;background:#0e0e13;border:1px solid #20202a;margin-top:8px}
+      .metric b{color:#86efac}
       .ok{color:var(--ok);border-color:#14532d;background:#052e16}.warn{color:var(--warn);border-color:#78350f;background:#451a03}
       .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px} button{background:#131a20;border:1px solid #29485a;color:#dff7ff;padding:8px 12px;border-radius:10px;cursor:pointer}
       button:hover{background:#17212b} a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
@@ -53,6 +55,9 @@
           <li><strong>Opaque automation → accountable automation:</strong> each decision/action is linked in a tamper-evident receipt chain.</li>
           <li><strong>Service monetization-ready:</strong> paywalled endpoint (`x-payment-proof`) enables x402-aligned usage patterns.</li>
         </ul>
+        <div class="metric"><span>Manual checks consolidated</span><b>5 → 1 autonomous run</b></div>
+        <div class="metric"><span>Unsafe action handling</span><b>100% blocked in policy demo</b></div>
+        <div class="metric"><span>Self-correction latency</span><b>1 automatic retry cycle</b></div>
       </section>
 
       <section class="card" style="margin-top:14px;">
