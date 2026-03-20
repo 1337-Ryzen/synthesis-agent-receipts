@@ -3,78 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReceiptPilot — Judge Demo</title>
+    <title>ReceiptPilot — Judge Overview</title>
     <style>
-      :root{--bg:#09090b;--card:#111114;--muted:#a1a1aa;--text:#fafafa;--accent:#22d3ee;--ok:#22c55e;--warn:#f59e0b;--border:#27272a}
-      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:radial-gradient(circle at top right,#112233 0%,var(--bg) 35%);color:var(--text)}
-      .wrap{max-width:1024px;margin:34px auto;padding:0 18px 40px}.card{background:linear-gradient(180deg,#14141a 0%,var(--card) 100%);border:1px solid var(--border);border-radius:14px;padding:16px}
-      .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))} h1{margin:0 0 8px;font-size:clamp(28px,5vw,42px)}
-      .sub{color:var(--muted);line-height:1.6}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;margin-right:8px;border:1px solid var(--border)}
-      .metric{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;background:#0e0e13;border:1px solid #20202a;margin-top:8px}
+      :root{--bg:#0a0a0f;--card:#14141d;--text:#f8fafc;--muted:#a1a1aa;--accent:#38bdf8;--ok:#22c55e;--border:#2a2a36}
+      *{box-sizing:border-box}
+      body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0b0b12,#09090f);color:var(--text)}
+      .wrap{max-width:980px;margin:32px auto;padding:0 16px 32px}
+      .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+      h1{margin:0 0 8px;font-size:clamp(28px,4.5vw,40px)}
+      h2{margin:0 0 10px;font-size:18px}
+      .sub{margin:0;color:var(--muted);line-height:1.6}
+      .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:12px}
+      ul{margin:8px 0 0 18px;line-height:1.8}
+      .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;background:#0a2c1a;color:#86efac;border:1px solid #14532d;margin-right:6px;margin-top:8px}
+      .metric{display:flex;justify-content:space-between;gap:10px;background:#0f1017;border:1px solid #242538;border-radius:10px;padding:10px 12px;margin-top:8px}
       .metric b{color:#86efac}
-      .ok{color:var(--ok);border-color:#14532d;background:#052e16}.warn{color:var(--warn);border-color:#78350f;background:#451a03}
-      .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px} button{background:#131a20;border:1px solid #29485a;color:#dff7ff;padding:8px 12px;border-radius:10px;cursor:pointer}
-      button:hover{background:#17212b} a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-      code,pre{display:block;white-space:pre-wrap;background:#0d0d12;border:1px solid #23232b;border-radius:10px;padding:12px;font-family:ui-monospace,monospace;font-size:12px;color:#e4e4e7;max-height:340px;overflow:auto}
-      ul{line-height:1.7} footer{margin-top:16px;color:var(--muted);font-size:13px}
+      .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+      button{background:#102232;border:1px solid #22465e;color:#e0f2fe;padding:8px 11px;border-radius:10px;cursor:pointer}
+      button:hover{background:#133046}
+      pre{background:#0d0e14;border:1px solid #232535;border-radius:10px;padding:12px;white-space:pre-wrap;max-height:320px;overflow:auto;font-size:12px}
+      a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+      .small{font-size:13px;color:var(--muted)}
     </style>
   </head>
   <body>
     <main class="wrap">
-      <section class="card" style="margin-bottom:14px;">
+      <section class="card">
         <h1>ReceiptPilot 👽</h1>
-        <p class="sub">Autonomous agent service with verifiable receipts. Built for The Synthesis and submitted to 3 tracks with live demo endpoints for judges.</p>
-        <span class="pill ok">Published Submission</span>
-        <span class="pill ok">3 Tracks Attached</span>
-        <span class="pill ok">Interactive Demo</span>
+        <p class="sub">A practical autonomous agent demo for The Synthesis. It plans, executes, self-corrects, and returns verifiable receipts.</p>
+        <span class="badge">Published Submission</span>
+        <span class="badge">3 Tracks Attached</span>
       </section>
 
       <section class="grid">
-        <article class="card"><div class="label">Tracks</div><ul><li>Let the Agent Cook</li><li>Agents With Receipts — ERC-8004</li><li>Agent Services on Base</li></ul></article>
-        <article class="card"><div class="label">Core Capabilities</div><ul><li>Autonomous discover→plan→execute→verify loop</li><li>External tool calls (market + repo health)</li><li>Guardrails with block + retry recovery</li><li>Tamper-evident receipt chain</li></ul></article>
-        <article class="card"><div class="label">Quick Links</div><ul><li><a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">GitHub Repository</a></li><li><a href="https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb" target="_blank" rel="noreferrer">ERC-8004 Registration Tx</a></li><li><a href="https://synthesis.devfolio.co/projects/b56b32b00a264ef184d89d178f4ccdbd" target="_blank" rel="noreferrer">Synthesis Project Record</a></li></ul></article>
+        <article class="card">
+          <h2>What it does</h2>
+          <ul>
+            <li>Runs a full autonomous loop</li>
+            <li>Uses external data sources</li>
+            <li>Blocks unsafe actions</li>
+            <li>Verifies outputs with receipt chain</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Track fit</h2>
+          <ul>
+            <li>Let the Agent Cook</li>
+            <li>Agents With Receipts — ERC-8004</li>
+            <li>Agent Services on Base</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Business outcomes</h2>
+          <div class="metric"><span>Manual checks</span><b>5 → 1 run</b></div>
+          <div class="metric"><span>Unsafe actions</span><b>Blocked</b></div>
+          <div class="metric"><span>Self-correction</span><b>1 auto retry</b></div>
+        </article>
       </section>
 
-      <section class="card" style="margin-top:14px;">
-        <div class="label">Let the Agent Cook — Track Visual</div>
-        <div class="grid" style="margin-top:10px;">
-          <article class="card"><div class="label">1) Discover</div><p class="sub">Accept a real goal and context as machine-readable input.</p></article>
-          <article class="card"><div class="label">2) Plan</div><p class="sub">Generate executable steps with explicit action limits and safety constraints.</p></article>
-          <article class="card"><div class="label">3) Execute</div><p class="sub">Run tool/API actions, capture outputs, and keep immutable receipt records.</p></article>
-          <article class="card"><div class="label">4) Verify</div><p class="sub">Validate receipt integrity and trust gates before final output.</p></article>
-          <article class="card"><div class="label">5) Self-Correct</div><p class="sub">If blocked/unsafe, rewrite plan and retry safely without human intervention.</p></article>
-          <article class="card"><div class="label">6) Submit</div><p class="sub">Return auditable result package for judges/humans/agents.</p></article>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:14px;">
-        <div class="label">Business Outcome Framing</div>
-        <ul>
-          <li><strong>Manual risk checks → autonomous risk-screened run:</strong> one operation call now returns an auditable decision trail.</li>
-          <li><strong>Trust uncertainty → verifiable trust gate:</strong> ERC-8004 registration check is enforced before sensitive execution paths.</li>
-          <li><strong>Opaque automation → accountable automation:</strong> each decision/action is linked in a tamper-evident receipt chain.</li>
-          <li><strong>Service monetization-ready:</strong> paywalled endpoint (`x-payment-proof`) enables x402-aligned usage patterns.</li>
-        </ul>
-        <div class="metric"><span>Manual checks consolidated</span><b>5 → 1 autonomous run</b></div>
-        <div class="metric"><span>Unsafe action handling</span><b>100% blocked in policy demo</b></div>
-        <div class="metric"><span>Self-correction latency</span><b>1 automatic retry cycle</b></div>
-      </section>
-
-      <section class="card" style="margin-top:14px;">
-        <div class="label">Judge Interaction Panel</div>
-        <p class="sub">Run checks directly against deployed API routes.</p>
+      <section class="card" style="margin-top:12px;">
+        <h2>Live judge actions</h2>
+        <p class="small">Click to run real checks on deployed API routes.</p>
         <div class="row">
           <button onclick="runDemo('/api/health','GET')">Health</button>
-          <button onclick="runDemo('/api/run','POST',{goal:'Judge happy-path run'})">Happy Run</button>
-          <button onclick="runDemo('/api/run-retry-demo','POST',{goal:'Guardrail + retry demo'})">Retry Demo</button>
-          <button onclick="runDemo('/api/verify-erc8004','GET')">Verify ERC-8004 Tx</button>
-          <button onclick="runDemo('/api/use-case-risk-screened','POST',{goal:'Risk-screened execution for ops'})">Impact Use-Case</button>
-          <button onclick="runDemo('/api/paywalled-run','POST',{goal:'Paid service run'},{'x-payment-proof':'demo-x402-proof'})">Paid Run</button>
+          <button onclick="runDemo('/api/run','POST',{goal:'Judge happy run'})">Happy Run</button>
+          <button onclick="runDemo('/api/run-retry-demo','POST',{goal:'Safety + retry demo'})">Retry Demo</button>
+          <button onclick="runDemo('/api/verify-erc8004','GET')">Verify ERC-8004</button>
+          <button onclick="runDemo('/api/use-case-risk-screened','POST',{goal:'Risk-screened execution'})">Impact Use-Case</button>
+          <button onclick="runDemo('/api/paywalled-run','POST',{goal:'Paid run'},{'x-payment-proof':'demo-proof'})">Paid Run</button>
         </div>
-        <pre id="out">Click a demo action above…</pre>
+        <pre id="out">Ready.</pre>
       </section>
 
-      <footer>ReceiptPilot • Ryzen + Zen • Synthesis 2026</footer>
+      <section class="card" style="margin-top:12px;">
+        <h2>Quick links</h2>
+        <ul>
+          <li><a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">GitHub Repository</a></li>
+          <li><a href="https://synthesis.devfolio.co/projects/b56b32b00a264ef184d89d178f4ccdbd" target="_blank" rel="noreferrer">Synthesis Project</a></li>
+          <li><a href="https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb" target="_blank" rel="noreferrer">ERC-8004 Registration Tx</a></li>
+        </ul>
+      </section>
     </main>
 
     <script>
