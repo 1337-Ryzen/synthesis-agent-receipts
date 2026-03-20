@@ -1,0 +1,23 @@
+{
+  "project": "ReceiptPilot",
+  "runId": "demo-run-001",
+  "timestamp": "2026-03-20T08:30:00Z",
+  "goal": "Create an auditable autonomous task run",
+  "loop": [
+    {"stage": "discover", "status": "ok", "detail": "Goal accepted"},
+    {"stage": "plan", "status": "ok", "detail": "3-step plan generated"},
+    {"stage": "execute", "status": "ok", "toolCalls": ["analyze_goal", "query_service", "generate_result"]},
+    {"stage": "verify", "status": "ok", "detail": "Receipt chain verified"},
+    {"stage": "submit", "status": "ok", "detail": "Result packaged for response"}
+  ],
+  "guardrails": {
+    "policyChecks": 3,
+    "blockedActions": 0,
+    "retries": 0
+  },
+  "receipts": {
+    "count": 7,
+    "integrity": "valid",
+    "tamperCheck": "pass"
+  }
+}

@@ -15,11 +15,18 @@ Autonomous agent service with verifiable action receipts.
 5. Emit tamper-evident receipts
 
 ## MVP Components
-- `src/orchestrator.ts` — goal → plan → execute → verify loop
-- `src/receiptChain.ts` — hash-chained receipt ledger
-- `src/policy.ts` — guardrails (spending/risk limits)
-- `src/server.ts` — HTTP service endpoint for external calls
+- `src/orchestrator.js` — goal → plan → execute → verify loop
+- `src/receiptChain.js` — hash-chained receipt ledger
+- `src/policy.js` — guardrails (spending/risk limits)
+- `src/server.js` — HTTP service endpoint for external calls
+- `agent.json` — agent capability manifest (DevSpot-style)
+- `agent_log.json` — structured autonomous execution log
 - `docs/demo-script.md` — 3–5 min judge demo flow
+
+## Judge Mapping
+- **Let the Agent Cook**: autonomous loop + tool orchestration + policy guardrails.
+- **Agents With Receipts — ERC-8004**: agent identity + registration tx + tamper-evident receipt chain.
+- **Agent Services on Base**: reusable service endpoint (`POST /run`) for agent/human consumers.
 
 ## Quick Start
 ```bash

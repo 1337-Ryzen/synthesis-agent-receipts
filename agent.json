@@ -1,0 +1,17 @@
+{
+  "name": "ReceiptPilot",
+  "operatorWallet": "0xE755Ea8cEF10Fce4fB7D0152bE2E6f1cE20A7BcE",
+  "erc8004Identity": {
+    "participantId": "41636523a3d04cf599a8699668f7fcb9",
+    "registrationTx": "https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb"
+  },
+  "harness": "openclaw",
+  "model": "gpt-5.3-codex",
+  "taskCategories": ["autonomous-execution", "verification", "agent-service"],
+  "tools": ["HTTP API", "Node.js", "Express", "SHA-256 receipt chaining"],
+  "safety": {
+    "maxUsdPerAction": 25,
+    "maxActionsPerRun": 10,
+    "blockedActions": ["send_private_key", "raw_secret_export"]
+  }
+}
