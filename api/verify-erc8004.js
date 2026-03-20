@@ -10,11 +10,11 @@ async function exists(txHash) {
   return Boolean(j?.result?.hash);
 }
 
-module.exports = async function handler(_req, res) {
+export default async function handler(_req, res) {
   try {
     const [registrationFound, selfCustodyFound] = await Promise.all([exists(REG_TX), exists(CUSTODY_TX)]);
     res.status(200).json({ ok: true, registrationTx: REG_TX, selfCustodyTx: CUSTODY_TX, registrationFound, selfCustodyFound });
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message });
   }
-};
+}

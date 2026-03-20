@@ -1,7 +1,7 @@
-const { run, makeChain, enforcePolicy } = require('./_core.cjs');
+import { run, makeChain, enforcePolicy } from './_core.js';
 
-module.exports = async function handler(req, res) {
-  const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+export default async function handler(req, res) {
+  const body = req.body || {};
   const goal = body.goal || 'Retry demo goal';
   const chain = makeChain();
 
@@ -36,4 +36,4 @@ module.exports = async function handler(req, res) {
   }
 
   return res.status(400).json({ ok: false, error: 'Retry path did not trigger policy block' });
-};
+}

@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+import crypto from 'node:crypto';
 
-const policy = {
+export const policy = {
   maxUsdPerAction: 25,
   maxActionsPerRun: 10,
   blockedActions: ['send_private_key', 'raw_secret_export']
@@ -10,15 +10,14 @@ function hashEntry(body) {
   return crypto.createHash('sha256').update(JSON.stringify(body)).digest('hex');
 }
 
-function makeChain() {
+export function makeChain() {
   const entries = [];
   return {
     add(type, payload) {
       const prevHash = entries.length ? entries[entries.length - 1].hash : 'GENESIS';
       const safePayload = payload === undefined ? null : JSON.parse(JSON.stringify(payload));
       const body = { index: entries.length, type, timestamp: new Date().toISOString(), payload: safePayload, prevHash };
-      const hash = hashEntry(body);
-      const entry = { ...body, hash };
+      const entry = { ...body, hash: hashEntry(body) };
       entries.push(entry);
       return entry;
     },
@@ -34,11 +33,9 @@ function makeChain() {
   };
 }
 
-function enforcePolicy(step) {
+export function enforcePolicy(step) {
   if (policy.blockedActions.includes(step.type)) return { ok: false, reason: `Blocked action type: ${step.type}` };
-  if (typeof step.amountUsd === 'number' && step.amountUsd > policy.maxUsdPerAction) {
-    return { ok: false, reason: `Amount exceeds limit: $${step.amountUsd}` };
-  }
+  if (typeof step.amountUsd === 'number' && step.amountUsd > policy.maxUsdPerAction) return { ok: false, reason: `Amount exceeds limit: $${step.amountUsd}` };
   return { ok: true };
 }
 
@@ -52,7 +49,7 @@ async function fetchEthPriceUsd() {
   }
 }
 
-async function run(goal, plan) {
+export async function run(goal, plan) {
   const chain = makeChain();
   const budget = { maxActions: policy.maxActionsPerRun, usedActions: 0, maxUsdPerAction: policy.maxUsdPerAction };
   const p = plan && plan.length ? plan : [
@@ -82,8 +79,5 @@ async function run(goal, plan) {
   chain.add('final_result', final);
   const verify = chain.verify();
   chain.add('verification', verify);
-
   return { ok: true, goal, final, verify, receipts: chain.entries };
 }
-
-module.exports = { run, makeChain, enforcePolicy, policy };
