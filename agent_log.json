@@ -1,7 +1,7 @@
 {
   "project": "ReceiptPilot",
-  "runId": "demo-run-002",
-  "timestamp": "2026-03-20T09:12:00Z",
+  "runId": "demo-run-003",
+  "timestamp": "2026-03-20T10:50:00Z",
   "goal": "Analyze a task request, produce execution plan, run actions, verify outputs, and return auditable receipts.",
   "loop": [
     { "stage": "discover", "status": "ok", "detail": "Goal accepted" },
@@ -12,6 +12,11 @@
     { "stage": "verify", "status": "ok", "detail": "Receipt chain integrity verified" },
     { "stage": "submit", "status": "ok", "detail": "Result packaged with receipts" }
   ],
+  "toolCalls": [
+    { "tool": "coingecko", "purpose": "market data", "status": "ok" },
+    { "tool": "github-api", "purpose": "repo health", "status": "ok" },
+    { "tool": "base-rpc", "purpose": "onchain tx verification", "status": "ok" }
+  ],
   "guardrails": {
     "policyChecks": 6,
     "blockedActions": 1,
@@ -21,8 +26,13 @@
       "maxActionsPerRun": 10
     }
   },
+  "serviceMonetization": {
+    "endpoint": "/service/paywalled-run",
+    "paymentHeader": "x-payment-proof",
+    "mode": "x402-integration-ready"
+  },
   "receipts": {
-    "count": 11,
+    "count": 12,
     "integrity": "valid",
     "tamperCheck": "pass"
   }

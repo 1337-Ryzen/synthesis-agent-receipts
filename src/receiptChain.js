@@ -8,7 +8,8 @@ export class ReceiptChain {
   add(type, payload) {
     const prevHash = this.entries.length ? this.entries[this.entries.length - 1].hash : 'GENESIS';
     const timestamp = new Date().toISOString();
-    const body = { index: this.entries.length, type, timestamp, payload, prevHash };
+    const safePayload = payload === undefined ? null : JSON.parse(JSON.stringify(payload));
+    const body = { index: this.entries.length, type, timestamp, payload: safePayload, prevHash };
     const hash = crypto.createHash('sha256').update(JSON.stringify(body)).digest('hex');
     const entry = { ...body, hash };
     this.entries.push(entry);

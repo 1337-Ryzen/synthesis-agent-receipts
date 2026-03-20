@@ -33,7 +33,14 @@ Autonomous agent service with verifiable action receipts.
 - **Structured logs**: run receipts + `agent_log.json` for machine-readable traceability.
 - **Safety guardrails**: blocked action types and per-action spend limits in `src/policy.js`.
 - **Self-correction/retry**: `POST /run-with-retry-demo` intentionally triggers a blocked unsafe action, then retries with a safe plan.
+- **Compute budget awareness**: action budget is included in run results.
 - **Clear output artifact**: API returns final result + full receipt chain with integrity verification.
+
+## ERC-8004 + Base Service Enhancements
+- **Onchain verification endpoint**: `GET /verify-erc8004` verifies registration + self-custody tx existence on Base RPC.
+- **Agent service endpoint**: `POST /run` for standard service execution.
+- **Payment-gated endpoint**: `POST /service/paywalled-run` (or `/api/paywalled-run` on Vercel) with `x-payment-proof` header (x402 integration-ready flow).
+- **Judge GUI**: root `index.html` includes an interaction panel for health, run, retry, onchain verification, and paid run demos.
 
 ## Quick Start
 ```bash
