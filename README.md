@@ -43,6 +43,18 @@ Autonomous agent service with verifiable action receipts.
 - **Payment-gated endpoint**: `POST /service/paywalled-run` (or `/api/paywalled-run` on Vercel) with `x-payment-proof` header (x402 integration-ready flow).
 - **Judge GUI**: root `index.html` includes an interaction panel for health, run, retry, onchain verification, impact use-case, and paid run demos.
 
+## Track 2 Final Polish — Agents With Receipts (ERC-8004)
+- **ERC-8004 identity proof**: registration transaction linked and publicly verifiable.
+- **Onchain trust checks**: `GET /verify-erc8004` (and `/api/verify-erc8004`) verifies registration + self-custody tx existence on Base.
+- **Trust-gated execution**: `POST /use-case/risk-screened-execution` (and `/api/use-case-risk-screened`) requires successful ERC-8004 trust check before autonomous run.
+- **Required artifacts present**: `agent.json` capability manifest + `agent_log.json` structured execution log + receipt chain output.
+
+## Track 3 Final Polish — Agent Services on Base
+- **Service endpoint**: `POST /run` (and `/api/run`) for reusable task execution.
+- **Payment-gated endpoint**: `POST /service/paywalled-run` (and `/api/paywalled-run`) with `x-payment-proof` header and `402 PAYMENT_REQUIRED` path.
+- **Discoverability**: live deployed surface at Vercel + clear quick links for judges.
+- **Commercial readiness narrative**: x402-integration-ready flow for monetizable agent services.
+
 ## Impact (Stronger Business Outcomes)
 - **Operational speed**: consolidates multiple manual checks into a single autonomous run with receipts.
 - **Risk control**: unsafe actions are blocked and automatically corrected before execution proceeds.
