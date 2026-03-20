@@ -1,13 +1,15 @@
 import { enforcePolicy, policy } from './policy.js';
 
-export async function runAutonomousTask({ goal, chain }) {
+export async function runAutonomousTask({ goal, chain, proposedPlan }) {
   chain.add('goal_received', { goal });
 
-  const plan = [
+  const defaultPlan = [
     { type: 'analyze_goal', amountUsd: 0 },
     { type: 'query_service', amountUsd: 0 },
     { type: 'generate_result', amountUsd: 0 }
   ];
+
+  const plan = Array.isArray(proposedPlan) && proposedPlan.length ? proposedPlan : defaultPlan;
   chain.add('plan_created', { plan, limits: policy });
 
   const outputs = [];

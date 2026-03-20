@@ -1,22 +1,28 @@
 {
   "project": "ReceiptPilot",
-  "runId": "demo-run-001",
-  "timestamp": "2026-03-20T08:30:00Z",
-  "goal": "Create an auditable autonomous task run",
+  "runId": "demo-run-002",
+  "timestamp": "2026-03-20T09:12:00Z",
+  "goal": "Analyze a task request, produce execution plan, run actions, verify outputs, and return auditable receipts.",
   "loop": [
-    {"stage": "discover", "status": "ok", "detail": "Goal accepted"},
-    {"stage": "plan", "status": "ok", "detail": "3-step plan generated"},
-    {"stage": "execute", "status": "ok", "toolCalls": ["analyze_goal", "query_service", "generate_result"]},
-    {"stage": "verify", "status": "ok", "detail": "Receipt chain verified"},
-    {"stage": "submit", "status": "ok", "detail": "Result packaged for response"}
+    { "stage": "discover", "status": "ok", "detail": "Goal accepted" },
+    { "stage": "plan", "status": "ok", "detail": "Initial plan generated with one unsafe action" },
+    { "stage": "execute", "status": "blocked", "detail": "Unsafe action detected by guardrail", "blockedAction": "send_private_key" },
+    { "stage": "self-correct", "status": "ok", "detail": "Plan rewritten to safe actions only" },
+    { "stage": "retry", "status": "ok", "detail": "Second attempt executed successfully" },
+    { "stage": "verify", "status": "ok", "detail": "Receipt chain integrity verified" },
+    { "stage": "submit", "status": "ok", "detail": "Result packaged with receipts" }
   ],
   "guardrails": {
-    "policyChecks": 3,
-    "blockedActions": 0,
-    "retries": 0
+    "policyChecks": 6,
+    "blockedActions": 1,
+    "retries": 1,
+    "limits": {
+      "maxUsdPerAction": 25,
+      "maxActionsPerRun": 10
+    }
   },
   "receipts": {
-    "count": 7,
+    "count": 11,
     "integrity": "valid",
     "tamperCheck": "pass"
   }

@@ -28,6 +28,13 @@ Autonomous agent service with verifiable action receipts.
 - **Agents With Receipts — ERC-8004**: agent identity + registration tx + tamper-evident receipt chain.
 - **Agent Services on Base**: reusable service endpoint (`POST /run`) for agent/human consumers.
 
+## Let the Agent Cook Compliance
+- **Full autonomous loop**: discover → plan → execute → verify via `runAutonomousTask`.
+- **Structured logs**: run receipts + `agent_log.json` for machine-readable traceability.
+- **Safety guardrails**: blocked action types and per-action spend limits in `src/policy.js`.
+- **Self-correction/retry**: `POST /run-with-retry-demo` intentionally triggers a blocked unsafe action, then retries with a safe plan.
+- **Clear output artifact**: API returns final result + full receipt chain with integrity verification.
+
 ## Quick Start
 ```bash
 cd receiptpilot
