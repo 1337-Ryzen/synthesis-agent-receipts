@@ -3,35 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReceiptPilot — Synthesis Submission</title>
+    <title>ReceiptPilot — Judge Demo</title>
     <style>
-      body { font-family: Inter, system-ui, Arial, sans-serif; margin: 0; background: #0b0b0f; color: #f4f4f5; }
-      .wrap { max-width: 860px; margin: 48px auto; padding: 0 20px; }
-      .card { background: #14141b; border: 1px solid #2a2a35; border-radius: 14px; padding: 20px; }
-      h1 { margin: 0 0 10px; font-size: 28px; }
-      p { line-height: 1.6; color: #d4d4d8; }
-      a { color: #7dd3fc; }
-      ul { line-height: 1.7; }
-      code { background: #1f1f2a; padding: 2px 6px; border-radius: 6px; }
+      :root {
+        --bg: #09090b;
+        --card: #111114;
+        --muted: #a1a1aa;
+        --text: #fafafa;
+        --accent: #22d3ee;
+        --ok: #22c55e;
+        --warn: #f59e0b;
+        --border: #27272a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: radial-gradient(circle at top right, #112233 0%, var(--bg) 35%);
+        color: var(--text);
+      }
+      .wrap { max-width: 980px; margin: 40px auto; padding: 0 18px 40px; }
+      .hero { margin-bottom: 18px; }
+      h1 { margin: 0 0 8px; font-size: clamp(30px, 5vw, 44px); }
+      .sub { color: var(--muted); line-height: 1.6; max-width: 760px; }
+      .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .card {
+        background: linear-gradient(180deg, #14141a 0%, var(--card) 100%);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
+      .value { font-size: 16px; margin-top: 8px; }
+      ul { margin: 8px 0 0 18px; padding: 0; line-height: 1.8; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code {
+        display: block;
+        white-space: pre-wrap;
+        background: #0d0d12;
+        border: 1px solid #23232b;
+        border-radius: 10px;
+        padding: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        color: #e4e4e7;
+      }
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        margin-right: 8px;
+        border: 1px solid var(--border);
+      }
+      .ok { color: var(--ok); border-color: #14532d; background: #052e16; }
+      .warn { color: var(--warn); border-color: #78350f; background: #451a03; }
+      footer { margin-top: 20px; color: var(--muted); font-size: 13px; }
     </style>
   </head>
   <body>
     <main class="wrap">
-      <section class="card">
+      <section class="hero">
         <h1>ReceiptPilot 👽</h1>
-        <p>
-          Autonomous agent service that executes tasks end-to-end and emits tamper-evident receipts for every decision and action.
+        <p class="sub">
+          Autonomous agent service with verifiable receipts. Built for The Synthesis hackathon and submitted to 3 tracks.
+          This page gives judges a fast path to inspect repo, track fit, and run behavior.
         </p>
-        <ul>
-          <li><strong>Tracks:</strong> Let the Agent Cook, Agents With Receipts (ERC-8004), Agent Services on Base</li>
-          <li><strong>Autonomous loop:</strong> discover → plan → execute → verify</li>
-          <li><strong>Safety:</strong> policy guardrails + blocked unsafe actions + retry flow</li>
-          <li><strong>Proof artifacts:</strong> <code>agent.json</code> and <code>agent_log.json</code></li>
-        </ul>
-        <p>
-          Repository: <a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">github.com/1337-Ryzen/synthesis-agent-receipts</a>
-        </p>
+        <div>
+          <span class="pill ok">Published Submission</span>
+          <span class="pill ok">3 Tracks Attached</span>
+          <span class="pill warn">Demo API shown locally in README</span>
+        </div>
       </section>
+
+      <section class="grid">
+        <article class="card">
+          <div class="label">Tracks</div>
+          <ul class="value">
+            <li>🤖 Let the Agent Cook — No Humans Required</li>
+            <li>🧾 Agents With Receipts — ERC-8004</li>
+            <li>⚙️ Agent Services on Base</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="label">Core Loop</div>
+          <ul class="value">
+            <li>Discover goal</li>
+            <li>Plan actions</li>
+            <li>Execute steps</li>
+            <li>Verify receipt chain integrity</li>
+            <li>Return auditable output</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="label">Safety + Self-Correction</div>
+          <ul class="value">
+            <li>Blocked unsafe action types</li>
+            <li>Per-action spend limit</li>
+            <li>Retry flow after policy block</li>
+            <li>Tamper-evident SHA-256 receipt chain</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <div class="label">Judge Quick Links</div>
+        <ul class="value">
+          <li><a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">GitHub Repository</a></li>
+          <li><a href="https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb" target="_blank" rel="noreferrer">ERC-8004 Registration Tx</a></li>
+          <li><a href="https://synthesis.devfolio.co/projects/b56b32b00a264ef184d89d178f4ccdbd" target="_blank" rel="noreferrer">Synthesis Project Record</a></li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <div class="label">Local Demo Commands</div>
+        <code>npm install
+npm run dev
+curl -s http://127.0.0.1:8787/health
+curl -s -X POST http://127.0.0.1:8787/run -H 'content-type: application/json' -d '{"goal":"Judge demo run"}'
+curl -s -X POST http://127.0.0.1:8787/run-with-retry-demo -H 'content-type: application/json' -d '{"goal":"Retry + guardrail demo"}'</code>
+      </section>
+
+      <footer>
+        ReceiptPilot • Ryzen + Zen • Synthesis 2026
+      </footer>
     </main>
   </body>
 </html>
