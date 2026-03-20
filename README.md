@@ -75,5 +75,37 @@ npm install
 npm run dev
 ```
 
+## Judge Rubric Mapping
+
+### Let the Agent Cook
+| Criterion | Implementation | Proof |
+|---|---|---|
+| Autonomous loop | `src/orchestrator.js`, `/api/run` | `docs/evidence/let-agent-cook-proof.json` |
+| Guardrails + retry | `src/policy.js`, `/api/run-retry-demo` | `docs/evidence/let-agent-cook-proof.json` |
+| Tool orchestration | CoinGecko + GitHub + sentiment calls | landing page + run responses |
+| Structured logs | `agent_log.json`, receipt chain | `agent_log.json` |
+
+### Agents With Receipts — ERC-8004
+| Criterion | Implementation | Proof |
+|---|---|---|
+| Identity + operator model | `agent.json` | `docs/evidence/erc8004-proof.json` |
+| Onchain verifiability | `/api/verify-erc8004` | `docs/evidence/erc8004-proof.json` |
+| Trust-gated flow | `/api/use-case-risk-screened` | endpoint response + receipts |
+| DevSpot artifacts | `agent.json`, `agent_log.json` | repo root |
+
+### Agent Services on Base
+| Criterion | Implementation | Proof |
+|---|---|---|
+| Discoverable service | Vercel landing + `/api/run` | deployed URL + judge panel |
+| Payment flow | `/api/paywalled-run` | `docs/evidence/base-service-proof.json` |
+| Utility output | structured result + receipts | `/api/run`, `/api/use-case-risk-screened` |
+
+## Production Readiness Next
+- Wire full x402 settlement verification instead of demo payment-proof header.
+- Add deeper ERC-8004 registry interactions (reputation/validation updates) where applicable.
+- Add authenticated API keys, tenant isolation, and rate limiting for multi-user operation.
+- Add observability stack (request tracing, error telemetry, receipt archival retention policy).
+- Add multi-agent coordination mode (planner/executor/verifier specialization) for larger workloads.
+
 ## Submission Notes
 Use one project submission with all 3 track UUIDs in `trackUUIDs`.

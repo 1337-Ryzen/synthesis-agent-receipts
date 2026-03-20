@@ -1,0 +1,22 @@
+{
+  "track": "Agent Services on Base",
+  "serviceEndpoints": {
+    "standard": "/api/run",
+    "paywalled": "/api/paywalled-run"
+  },
+  "paymentFlow": {
+    "withoutProof": {
+      "status": 402,
+      "code": "PAYMENT_REQUIRED"
+    },
+    "withProof": {
+      "status": 200,
+      "paid": true,
+      "verifyOk": true
+    }
+  },
+  "discoverability": {
+    "deployedURL": "https://synthesis-agent-receipts-3xqv.vercel.app/",
+    "judgePanel": "Interactive buttons on landing page"
+  }
+}

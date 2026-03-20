@@ -1,0 +1,24 @@
+{
+  "track": "Let the Agent Cook",
+  "proofSummary": {
+    "autonomousLoop": "discover->plan->execute->verify->submit",
+    "guardrailBlockedAction": true,
+    "automaticRetry": true,
+    "computeBudgetVisible": true
+  },
+  "sampleRuns": {
+    "happyPath": {
+      "endpoint": "/api/run",
+      "result": { "ok": true, "verifyOk": true, "steps": 6 }
+    },
+    "retryPath": {
+      "endpoint": "/api/run-retry-demo",
+      "result": {
+        "ok": true,
+        "retried": true,
+        "containsPolicyBlock": true,
+        "containsRetryTriggered": true
+      }
+    }
+  }
+}
