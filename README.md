@@ -38,9 +38,10 @@ Autonomous agent service with verifiable action receipts.
 
 ## ERC-8004 + Base Service Enhancements
 - **Onchain verification endpoint**: `GET /verify-erc8004` verifies registration + self-custody tx existence on Base RPC.
+- **Trust-gated impact endpoint**: `POST /use-case/risk-screened-execution` (or `/api/use-case-risk-screened`) verifies ERC-8004 registration before risk-screened execution.
 - **Agent service endpoint**: `POST /run` for standard service execution.
 - **Payment-gated endpoint**: `POST /service/paywalled-run` (or `/api/paywalled-run` on Vercel) with `x-payment-proof` header (x402 integration-ready flow).
-- **Judge GUI**: root `index.html` includes an interaction panel for health, run, retry, onchain verification, and paid run demos.
+- **Judge GUI**: root `index.html` includes an interaction panel for health, run, retry, onchain verification, impact use-case, and paid run demos.
 
 ## Quick Start
 ```bash

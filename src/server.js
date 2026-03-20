@@ -119,6 +119,31 @@ app.post('/service/paywalled-run', async (req, res) => {
   }
 });
 
+app.post('/use-case/risk-screened-execution', async (req, res) => {
+  try {
+    const trust = await verifyBaseTx(ERC8004_TX);
+    if (!trust) {
+      return res.status(403).json({ ok: false, reason: 'ERC-8004 registration trust check failed' });
+    }
+
+    const goal = req.body?.goal || 'Run a risk-screened autonomous task for operations team';
+    const plan = [
+      { type: 'analyze_goal', amountUsd: 0 },
+      { type: 'query_market_data', amountUsd: 0 },
+      { type: 'query_repo_health', amountUsd: 0 },
+      { type: 'evaluate_risk_score', amountUsd: 0 },
+      { type: 'generate_result', amountUsd: 0 }
+    ];
+
+    const chain = new ReceiptChain();
+    chain.add('trust_gate_passed', { erc8004RegistrationVerified: true, tx: ERC8004_TX });
+    const result = await runAutonomousTask({ goal, proposedPlan: plan, chain });
+    res.json({ ok: true, scenario: 'risk-screened-execution', goal, ...result, receipts: chain.entries });
+  } catch (e) {
+    res.status(400).json({ ok: false, error: e.message });
+  }
+});
+
 const PORT = process.env.PORT || 8787;
 app.listen(PORT, () => {
   console.log(`ReceiptPilot running on :${PORT}`);

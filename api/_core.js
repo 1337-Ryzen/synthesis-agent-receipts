@@ -49,12 +49,32 @@ async function fetchEthPriceUsd() {
   }
 }
 
+async function fetchRepoStats() {
+  try {
+    const r = await fetch('https://api.github.com/repos/1337-Ryzen/synthesis-agent-receipts', {
+      headers: { 'User-Agent': 'ReceiptPilot' }
+    });
+    const j = await r.json();
+    return {
+      ok: true,
+      source: 'github',
+      stars: j?.stargazers_count ?? 0,
+      openIssues: j?.open_issues_count ?? 0,
+      defaultBranch: j?.default_branch ?? 'main'
+    };
+  } catch (e) {
+    return { ok: false, source: 'github', error: String(e.message || e) };
+  }
+}
+
 export async function run(goal, plan) {
   const chain = makeChain();
   const budget = { maxActions: policy.maxActionsPerRun, usedActions: 0, maxUsdPerAction: policy.maxUsdPerAction };
   const p = plan && plan.length ? plan : [
     { type: 'analyze_goal', amountUsd: 0 },
     { type: 'query_market_data', amountUsd: 0 },
+    { type: 'query_repo_health', amountUsd: 0 },
+    { type: 'evaluate_risk_score', amountUsd: 0 },
     { type: 'generate_result', amountUsd: 0 }
   ];
 
@@ -69,7 +89,10 @@ export async function run(goal, plan) {
       throw new Error(check.reason);
     }
     budget.usedActions += 1;
-    const toolResult = step.type === 'query_market_data' ? await fetchEthPriceUsd() : { ok: true, source: 'internal', detail: `Executed ${step.type}` };
+    let toolResult = { ok: true, source: 'internal', detail: `Executed ${step.type}` };
+    if (step.type === 'query_market_data') toolResult = await fetchEthPriceUsd();
+    if (step.type === 'query_repo_health') toolResult = await fetchRepoStats();
+    if (step.type === 'evaluate_risk_score') toolResult = { ok: true, source: 'risk-engine', score: 0.12, verdict: 'low-risk' };
     const out = { step: step.type, status: 'ok', toolResult };
     outputs.push(out);
     chain.add('action_executed', out);

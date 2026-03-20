@@ -41,6 +41,7 @@
           <button onclick="runDemo('/api/run','POST',{goal:'Judge happy-path run'})">Happy Run</button>
           <button onclick="runDemo('/api/run-retry-demo','POST',{goal:'Guardrail + retry demo'})">Retry Demo</button>
           <button onclick="runDemo('/api/verify-erc8004','GET')">Verify ERC-8004 Tx</button>
+          <button onclick="runDemo('/api/use-case-risk-screened','POST',{goal:'Risk-screened execution for ops'})">Impact Use-Case</button>
           <button onclick="runDemo('/api/paywalled-run','POST',{goal:'Paid service run'},{'x-payment-proof':'demo-x402-proof'})">Paid Run</button>
         </div>
         <pre id="out">Click a demo action above…</pre>
