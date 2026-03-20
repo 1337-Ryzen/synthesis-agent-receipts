@@ -3,67 +3,161 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReceiptPilot — Judge Overview</title>
+    <title>ReceiptPilot — Product Demo</title>
     <style>
-      :root{--bg:#0a0a0f;--card:#14141d;--text:#f8fafc;--muted:#a1a1aa;--accent:#38bdf8;--ok:#22c55e;--border:#2a2a36}
-      *{box-sizing:border-box}
-      body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#0b0b12,#09090f);color:var(--text)}
-      .wrap{max-width:980px;margin:32px auto;padding:0 16px 32px}
-      .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
-      h1{margin:0 0 8px;font-size:clamp(28px,4.5vw,40px)}
-      h2{margin:0 0 10px;font-size:18px}
-      .sub{margin:0;color:var(--muted);line-height:1.6}
-      .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:12px}
-      ul{margin:8px 0 0 18px;line-height:1.8}
-      .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;background:#0a2c1a;color:#86efac;border:1px solid #14532d;margin-right:6px;margin-top:8px}
-      .metric{display:flex;justify-content:space-between;gap:10px;background:#0f1017;border:1px solid #242538;border-radius:10px;padding:10px 12px;margin-top:8px}
-      .metric b{color:#86efac}
-      .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-      button{background:#102232;border:1px solid #22465e;color:#e0f2fe;padding:8px 11px;border-radius:10px;cursor:pointer}
-      button:hover{background:#133046}
-      pre{background:#0d0e14;border:1px solid #232535;border-radius:10px;padding:12px;white-space:pre-wrap;max-height:320px;overflow:auto;font-size:12px}
-      a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-      .small{font-size:13px;color:var(--muted)}
+      :root {
+        --bg: #070910;
+        --panel: #101522;
+        --panel2: #0d1320;
+        --text: #f8fafc;
+        --muted: #9aa4b2;
+        --accent: #38bdf8;
+        --good: #22c55e;
+        --border: #273246;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background:
+          radial-gradient(1000px 420px at 85% -10%, rgba(56,189,248,.20), transparent 60%),
+          radial-gradient(700px 300px at -10% 0%, rgba(34,197,94,.15), transparent 55%),
+          var(--bg);
+      }
+      .wrap { max-width: 1080px; margin: 26px auto 40px; padding: 0 16px; }
+      .card {
+        background: linear-gradient(180deg, var(--panel), var(--panel2));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 8px 28px rgba(0,0,0,.28);
+      }
+      .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; }
+      h1 { margin: 0 0 8px; font-size: clamp(30px, 5vw, 44px); letter-spacing: .2px; }
+      h2 { margin: 0 0 10px; font-size: 19px; }
+      .sub { margin: 0; color: var(--muted); line-height: 1.65; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 5px 10px; border-radius: 999px; font-size: 12px;
+        border: 1px solid #24586f; background: #0d2230; color: #d9f4ff; margin-right: 6px; margin-top: 8px;
+      }
+      .pill-good { border-color: #166534; background: #072513; color: #86efac; }
+      .metric-grid { display: grid; gap: 8px; margin-top: 8px; }
+      .metric {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 12px; border-radius: 10px;
+        background: #0b111c; border: 1px solid #22314a;
+      }
+      .metric b { color: #9ff6be; font-size: 13px; }
+      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); margin-top: 12px; }
+      ul { margin: 8px 0 0 18px; line-height: 1.8; }
+      .flow {
+        margin-top: 10px; display: grid; gap: 8px;
+        grid-template-columns: repeat(auto-fit, minmax(155px,1fr));
+      }
+      .step {
+        padding: 10px; border-radius: 10px; border: 1px solid #244357;
+        background: #0a1622; min-height: 86px;
+      }
+      .step .k { font-size: 11px; color: #7dd3fc; text-transform: uppercase; letter-spacing: .08em; }
+      .step .v { margin-top: 6px; font-size: 13px; color: #dbe7f5; line-height: 1.45; }
+      .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+      button {
+        background: linear-gradient(180deg, #123147, #112538);
+        border: 1px solid #2b5573;
+        color: #e0f2fe;
+        padding: 8px 11px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover { filter: brightness(1.06); }
+      pre {
+        margin-top: 10px;
+        background: #090e17;
+        border: 1px solid #202f49;
+        border-radius: 10px;
+        padding: 12px;
+        white-space: pre-wrap;
+        max-height: 320px;
+        overflow: auto;
+        font-size: 12px;
+        color: #dce6f5;
+      }
+      .small { font-size: 13px; color: var(--muted); }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .icons { font-size: 16px; margin-right: 6px; }
+      @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
     <main class="wrap">
-      <section class="card">
-        <h1>ReceiptPilot 👽</h1>
-        <p class="sub">A practical autonomous agent demo for The Synthesis. It plans, executes, self-corrects, and returns verifiable receipts.</p>
-        <span class="badge">Published Submission</span>
-        <span class="badge">3 Tracks Attached</span>
+      <section class="hero">
+        <article class="card">
+          <h1>ReceiptPilot 👽</h1>
+          <p class="sub">
+            Product-style autonomous agent demo for The Synthesis. It discovers tasks, plans safely,
+            executes across multiple tools, self-corrects blocked actions, and returns verifiable receipts.
+          </p>
+          <span class="badge pill-good">✅ Published submission</span>
+          <span class="badge">🧠 3-track strategy</span>
+          <span class="badge">🔍 Judge-interactive demo</span>
+
+          <div class="flow">
+            <div class="step"><div class="k">Discover</div><div class="v">Accepts task objective & context</div></div>
+            <div class="step"><div class="k">Plan</div><div class="v">Creates bounded, policy-aware action plan</div></div>
+            <div class="step"><div class="k">Execute</div><div class="v">Runs external tools + internal logic</div></div>
+            <div class="step"><div class="k">Verify</div><div class="v">Checks receipt chain integrity + trust gates</div></div>
+            <div class="step"><div class="k">Self-correct</div><div class="v">Blocks unsafe action, retries safely</div></div>
+            <div class="step"><div class="k">Submit</div><div class="v">Returns auditable final output</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>📈 Outcome Snapshot</h2>
+          <div class="metric-grid">
+            <div class="metric"><span>Manual checks</span><b>5 → 1 autonomous run</b></div>
+            <div class="metric"><span>Unsafe actions</span><b>100% blocked in demo path</b></div>
+            <div class="metric"><span>Self-correction</span><b>1 automatic retry cycle</b></div>
+            <div class="metric"><span>Tool orchestration</span><b>4 external/verification signals</b></div>
+          </div>
+          <p class="small" style="margin-top:10px;">Business value: faster operations, safer execution, and clearer accountability for humans + agents.</p>
+        </article>
       </section>
 
       <section class="grid">
         <article class="card">
-          <h2>What it does</h2>
+          <h2><span class="icons">🏁</span>Track fit</h2>
           <ul>
-            <li>Runs a full autonomous loop</li>
-            <li>Uses external data sources</li>
-            <li>Blocks unsafe actions</li>
-            <li>Verifies outputs with receipt chain</li>
+            <li><strong>Let the Agent Cook</strong> — autonomous loop + guardrails + retries</li>
+            <li><strong>Agents With Receipts (ERC-8004)</strong> — trust + onchain verifiability</li>
+            <li><strong>Agent Services on Base</strong> — API service + paywalled endpoint</li>
           </ul>
         </article>
         <article class="card">
-          <h2>Track fit</h2>
+          <h2><span class="icons">🧰</span>Tool stack</h2>
           <ul>
-            <li>Let the Agent Cook</li>
-            <li>Agents With Receipts — ERC-8004</li>
-            <li>Agent Services on Base</li>
+            <li>CoinGecko API (market signal)</li>
+            <li>GitHub API (repo health signal)</li>
+            <li>Alternative.me F&G Index (sentiment signal)</li>
+            <li>Base RPC (ERC-8004 tx verification)</li>
           </ul>
         </article>
         <article class="card">
-          <h2>Business outcomes</h2>
-          <div class="metric"><span>Manual checks</span><b>5 → 1 run</b></div>
-          <div class="metric"><span>Unsafe actions</span><b>Blocked</b></div>
-          <div class="metric"><span>Self-correction</span><b>1 auto retry</b></div>
+          <h2><span class="icons">🔗</span>Quick links</h2>
+          <ul>
+            <li><a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">GitHub Repository</a></li>
+            <li><a href="https://synthesis.devfolio.co/projects/b56b32b00a264ef184d89d178f4ccdbd" target="_blank" rel="noreferrer">Synthesis Project</a></li>
+            <li><a href="https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb" target="_blank" rel="noreferrer">ERC-8004 Registration Tx</a></li>
+          </ul>
         </article>
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Live judge actions</h2>
-        <p class="small">Click to run real checks on deployed API routes.</p>
+        <h2>🧪 Judge Interaction Panel</h2>
+        <p class="small">Run the exact demo checks against deployed endpoints.</p>
         <div class="row">
           <button onclick="runDemo('/api/health','GET')">Health</button>
           <button onclick="runDemo('/api/run','POST',{goal:'Judge happy run'})">Happy Run</button>
@@ -73,15 +167,6 @@
           <button onclick="runDemo('/api/paywalled-run','POST',{goal:'Paid run'},{'x-payment-proof':'demo-proof'})">Paid Run</button>
         </div>
         <pre id="out">Ready.</pre>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>Quick links</h2>
-        <ul>
-          <li><a href="https://github.com/1337-Ryzen/synthesis-agent-receipts" target="_blank" rel="noreferrer">GitHub Repository</a></li>
-          <li><a href="https://synthesis.devfolio.co/projects/b56b32b00a264ef184d89d178f4ccdbd" target="_blank" rel="noreferrer">Synthesis Project</a></li>
-          <li><a href="https://basescan.org/tx/0x1f19e3b52818e0b7f7380efb745765495912007ce95d4cb21cb0d78117047ccb" target="_blank" rel="noreferrer">ERC-8004 Registration Tx</a></li>
-        </ul>
       </section>
     </main>
 
