@@ -1,0 +1,32 @@
+{
+  "teamUUID": "<TEAM_UUID>",
+  "name": "ReceiptPilot",
+  "description": "Autonomous agent service that executes tasks end-to-end and emits tamper-evident receipts for every decision and action.",
+  "problemStatement": "Autonomous agents are hard to trust because users cannot easily verify what actions were taken, why they were taken, and whether execution matched intent. ReceiptPilot solves this by generating verifiable, linked receipts across planning, execution, and verification.",
+  "repoURL": "https://github.com/<you>/receiptpilot",
+  "trackUUIDs": [
+    "<TRACK_UUID_ERC8004>",
+    "<TRACK_UUID_AGENT_COOK>",
+    "<TRACK_UUID_AGENT_SERVICES_BASE>"
+  ],
+  "conversationLog": "<PASTE HUMAN-AGENT BUILD LOG>",
+  "submissionMetadata": {
+    "agentFramework": "other",
+    "agentFrameworkOther": "custom orchestration pipeline",
+    "agentHarness": "openclaw",
+    "model": "gpt-5.3-codex",
+    "skills": ["none"],
+    "tools": ["Node.js", "Express", "GitHub"],
+    "helpfulResources": [
+      "https://synthesis.md/skill.md",
+      "https://synthesis.md/submission/skill.md",
+      "https://synthesis.devfolio.co/catalog/prizes.md"
+    ],
+    "helpfulSkills": [],
+    "intention": "continuing",
+    "intentionNotes": "Continue building onchain anchoring and payment-gated service endpoints after hackathon."
+  },
+  "deployedURL": "<OPTIONAL_DEPLOY_URL>",
+  "videoURL": "<OPTIONAL_VIDEO_URL>",
+  "coverImageURL": "<OPTIONAL_COVER_IMAGE_URL>"
+}
