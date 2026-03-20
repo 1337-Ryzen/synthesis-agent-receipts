@@ -43,6 +43,13 @@ Autonomous agent service with verifiable action receipts.
 - **Payment-gated endpoint**: `POST /service/paywalled-run` (or `/api/paywalled-run` on Vercel) with `x-payment-proof` header (x402 integration-ready flow).
 - **Judge GUI**: root `index.html` includes an interaction panel for health, run, retry, onchain verification, impact use-case, and paid run demos.
 
+## Impact (Stronger Business Outcomes)
+- **Operational speed**: consolidates multiple manual checks into a single autonomous run with receipts.
+- **Risk control**: unsafe actions are blocked and automatically corrected before execution proceeds.
+- **Trust assurance**: ERC-8004 identity proof is checked before trust-gated scenarios.
+- **Auditability**: every critical step is traceable, reducing ambiguity during compliance or incident review.
+- **Service readiness**: payment-gated route enables monetizable agent-service workflows.
+
 ## Quick Start
 ```bash
 cd receiptpilot
